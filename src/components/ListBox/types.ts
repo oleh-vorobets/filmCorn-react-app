@@ -28,6 +28,10 @@ export interface ListBoxType {
     initialMovies: MoviesType;
 }
 
+export interface WatchedSummaryType {
+    movies: MoviesType;
+}
+
 export interface MovieItemType {
     movie: MovieType;
     onDeleteMovie: (deletedMovie: MovieType) => void;
