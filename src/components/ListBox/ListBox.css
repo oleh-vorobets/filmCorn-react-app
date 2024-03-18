@@ -1,0 +1,31 @@
+.box {
+    background-color: var(--color-background-500);
+    border-radius: 0.9rem;
+    max-width: 42rem;
+    overflow: scroll;
+    position: relative;
+    width: 42rem;
+    margin-top: 2.5rem;
+}
+
+.btn {
+    aspect-ratio: 1;
+    background-color: var(--color-background-900);
+    border: none;
+    border-radius: 50%;
+    color: var(--color-text);
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: 700;
+    height: 2.4rem;
+    position: absolute;
+    right: 0.8rem;
+    top: 0.8rem;
+    z-index: 999;
+}
+
+.movies-list {
+    list-style: none;
+    overflow: scroll;
+    padding: 0.8rem 0;
+}

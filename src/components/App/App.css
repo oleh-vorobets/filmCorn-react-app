@@ -1,0 +1,6 @@
+main {
+    display: flex;
+    gap: 2.4rem;
+    justify-content: center;
+    height: calc(100vh - 12rem);
+}

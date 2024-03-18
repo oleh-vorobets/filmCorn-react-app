@@ -1,0 +1,15 @@
+/* :root {
+    --color-primary: #6741d9;
+    --color-primary-light: #7950f2;
+} */
+
+.nav-bar {
+    width: 100%;
+    height: 7.2rem;
+    background-color: var(--color-primary);
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    padding: 0 3.2rem;
+}
