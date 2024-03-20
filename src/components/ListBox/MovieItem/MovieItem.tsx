@@ -10,6 +10,7 @@ export function MovieItem({ movie, onDeleteMovie }: MovieItemType) {
             <li className="movie">
                 <img src={movie.Poster} alt="Poster" />
                 <h3>{movie.Title}</h3>
+
                 {/* Defining if movie is type of WatchedMovie or MovieData */}
                 <div className="movie-info">
                     {isWatchedMovies ? (
@@ -17,16 +18,18 @@ export function MovieItem({ movie, onDeleteMovie }: MovieItemType) {
                             <p>⭐️ {movie.imdbRating}</p>
                             <p>🌟 {movie.userRating}</p>
                             <p>⏳ {movie.runtime}</p>
+                            <button
+                                className="delete-btn"
+                                onClick={() =>
+                                    onDeleteMovie && onDeleteMovie(movie)
+                                }
+                            >
+                                X
+                            </button>
                         </>
                     ) : (
                         <p>📆 {movie.Year}</p>
                     )}
-                    <button
-                        className="delete-btn"
-                        onClick={() => onDeleteMovie(movie)}
-                    >
-                        X
-                    </button>
                 </div>
             </li>
         </>

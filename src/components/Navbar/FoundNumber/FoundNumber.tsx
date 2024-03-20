@@ -1,9 +1,10 @@
 import './FoundNumber.css';
+import { FoundNumberType } from '../types';
 
-export function FoundNumber() {
+export function FoundNumber({ foundNumber }: FoundNumberType) {
     return (
         <p className="num-results">
-            Found <strong>X</strong> results
+            Found <strong>{foundNumber}</strong> results
         </p>
     );
 }

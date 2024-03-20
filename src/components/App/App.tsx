@@ -1,4 +1,6 @@
 import './App.css';
+import { useState } from 'react';
+import { MovieType } from '../ListBox/types';
 import { Navbar } from '../Navbar/Navbar';
 import { ListBox } from '../ListBox/ListBox';
 
@@ -45,12 +47,24 @@ const tempWatchedData = [
 ];
 
 export default function App() {
+    const [watchedMovies, setWatchedMovies] = useState([...tempWatchedData]);
+    const [foundMovies, setfoundMovies] = useState([...tempMovieData]);
+
+    function handleDeleteWatchedMovie(deletedMovie: MovieType) {
+        setWatchedMovies((movies) =>
+            movies.filter((movie) => movie.imdbID !== deletedMovie.imdbID)
+        );
+    }
+
     return (
         <>
-            <Navbar />
+            <Navbar foundNumber={foundMovies.length} />
             <main>
-                <ListBox initialMovies={tempMovieData} />
-                <ListBox initialMovies={tempWatchedData} />
+                <ListBox movies={foundMovies} />
+                <ListBox
+                    movies={watchedMovies}
+                    onDeleteMovie={handleDeleteWatchedMovie}
+                />
             </main>
         </>
     );

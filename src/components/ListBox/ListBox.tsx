@@ -7,9 +7,8 @@ import { Button } from './Button/Button';
 import { MovieItem } from './MovieItem/MovieItem';
 import { WatchedSummary } from './WatchedSummary/WatchedSummary';
 
-export function ListBox({ initialMovies }: ListBoxType) {
+export function ListBox({ movies, onDeleteMovie }: ListBoxType) {
     const [isOpen, setIsOpen] = useState(true);
-    const [movies, setMovies] = useState([...initialMovies]);
 
     const isWatchedMovies = 'runtime' in movies[0];
 
@@ -17,12 +16,27 @@ export function ListBox({ initialMovies }: ListBoxType) {
         setIsOpen(!isOpen);
     }
 
-    function handleDeleteMovie(deletedMovie: MovieType) {
-        setMovies((movies) =>
-            movies.filter((movie) => movie.imdbID !== deletedMovie.imdbID)
-        );
-    }
+    const moviesCount = movies.length;
 
+    // Counting average measurements
+    let averageImdb = 0,
+        averageUserRating = 0,
+        averageRuntime = 0;
+    for (let movie of movies) {
+        if ('imdbRating' in movie) {
+            averageImdb += +movie.imdbRating;
+        }
+        if ('userRating' in movie) {
+            averageUserRating += movie.userRating;
+        }
+        if ('runtime' in movie) {
+            averageRuntime += movie.runtime;
+        }
+    }
+    averageImdb /= moviesCount;
+    averageUserRating /= moviesCount;
+    averageRuntime /= moviesCount;
+        
     return (
         <div className="box">
             <Button onOpen={handleIsOpen}>{isOpen ? '–' : '+'}</Button>
@@ -32,7 +46,7 @@ export function ListBox({ initialMovies }: ListBoxType) {
                     {movies.map((movie) => (
                         <MovieItem
                             movie={movie}
-                            onDeleteMovie={handleDeleteMovie}
+                            onDeleteMovie={onDeleteMovie}
                             key={movie.imdbID}
                         />
                     ))}

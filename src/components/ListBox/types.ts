@@ -25,7 +25,8 @@ export type MovieType = MovieDataType | WatchedMovieType;
 type MoviesType = MovieDataType[] | WatchedMovieType[];
 
 export interface ListBoxType {
-    initialMovies: MoviesType;
+    movies: MoviesType;
+    onDeleteMovie?: (deletedMovie: MovieType) => void;
 }
 
 export interface WatchedSummaryType {
@@ -34,5 +35,5 @@ export interface WatchedSummaryType {
 
 export interface MovieItemType {
     movie: MovieType;
-    onDeleteMovie: (deletedMovie: MovieType) => void;
+    onDeleteMovie?: (deletedMovie: MovieType) => void;
 }
