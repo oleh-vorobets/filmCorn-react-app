@@ -5,6 +5,7 @@ import './ListBox.css';
 import { ListBoxType, MovieType } from './types';
 import { Button } from './Button/Button';
 import { MovieItem } from './MovieItem/MovieItem';
+import { WatchedSummary } from './WatchedSummary/WatchedSummary';
 
 export function ListBox({ movies, onDeleteMovie }: ListBoxType) {
     const [isOpen, setIsOpen] = useState(true);
@@ -35,21 +36,11 @@ export function ListBox({ movies, onDeleteMovie }: ListBoxType) {
     averageImdb /= moviesCount;
     averageUserRating /= moviesCount;
     averageRuntime /= moviesCount;
-
+        
     return (
         <div className="box">
             <Button onOpen={handleIsOpen}>{isOpen ? '–' : '+'}</Button>
-            {isWatchedMovies && (
-                <div className="summary">
-                    <h2>Movies you watched</h2>
-                    <div className="summary-info">
-                        <span>#️⃣ {movies.length} movies</span>
-                        <span>⭐️ {averageImdb}</span>
-                        <span>🌟 {averageUserRating}</span>
-                        <span>⏳ {averageRuntime}</span>
-                    </div>
-                </div>
-            )}
+            {isWatchedMovies && <WatchedSummary movies={movies} />}
             {isOpen && (
                 <ul className="movies-list">
                     {movies.map((movie) => (
