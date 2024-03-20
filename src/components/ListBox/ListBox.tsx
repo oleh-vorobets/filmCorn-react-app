@@ -6,20 +6,13 @@ import { ListBoxType, MovieType } from './types';
 import { Button } from './Button/Button';
 import { MovieItem } from './MovieItem/MovieItem';
 
-export function ListBox({ initialMovies }: ListBoxType) {
+export function ListBox({ movies, onDeleteMovie }: ListBoxType) {
     const [isOpen, setIsOpen] = useState(true);
-    const [movies, setMovies] = useState([...initialMovies]);
 
     const isWatchedMovies = 'runtime' in movies[0];
 
     function handleIsOpen() {
         setIsOpen(!isOpen);
-    }
-
-    function handleDeleteMovie(deletedMovie: MovieType) {
-        setMovies((movies) =>
-            movies.filter((movie) => movie.imdbID !== deletedMovie.imdbID)
-        );
     }
 
     const moviesCount = movies.length;
@@ -62,7 +55,7 @@ export function ListBox({ initialMovies }: ListBoxType) {
                     {movies.map((movie) => (
                         <MovieItem
                             movie={movie}
-                            onDeleteMovie={handleDeleteMovie}
+                            onDeleteMovie={onDeleteMovie}
                             key={movie.imdbID}
                         />
                     ))}
